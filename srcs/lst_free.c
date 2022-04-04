@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_del.c                                          :+:      :+:    :+:   */
+/*   lst_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/29 17:46:10 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/31 17:57:45 by jverdu-r         ###   ########.fr       */
+/*   Created: 2022/03/31 17:58:28 by jverdu-r          #+#    #+#             */
+/*   Updated: 2022/04/04 16:06:40 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-p_list *lst_del(p_list *list)
+void	lst_free(p_list *list)
 {
-	list = list->next;
-	free(list->prev);
-	list->prev = NULL;
-	return (list);
+	if (list)
+	{
+		while (list->next)
+		{
+			list = list->next;
+			free(list->prev);
+		}
+			if (!list->next)
+				free(list);
+	}
 }

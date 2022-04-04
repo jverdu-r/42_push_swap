@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:59:20 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/30 16:05:55 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:46:51 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 p_list	*lst_rotate(p_list *list)
 {
-	void	*value;
+	int	value;
 
 	value = list->content;
 	while (list->next)
 	{
-		list->content  = list->next->content;
+		list->content = list->next->content;
 		list = list->next;
 	}
 	list->content = value;

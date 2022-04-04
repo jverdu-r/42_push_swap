@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:27:55 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/28 19:22:24 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:47:22 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	lst_switch(p_list *list)
 {
-	void *content;
+	int	content;
 
 	if (list->next != NULL)
 	{

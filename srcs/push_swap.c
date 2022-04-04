@@ -6,39 +6,38 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/30 17:32:35 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:39:58 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-void	push_swap(int argc, char *argv[])
-{
-}
+
 
 int	main(int argc, char *argv[])
 {
 	p_list	*listA;
 	p_list	*listB;
-	int		value;
-	int		i;
 
-	if (!argv[i])
+	if (!argv[1])
 		return (0);
-	i = 1;
 	listB = NULL;
-	while (argv[i])
+	listA = check_arg(argc, argv);
+	if (!listA)
 	{
-		value = *argv[i] - '0';
-		lst_add(&listA, lst_new(value));
-		i++;
+		ft_printf("hay numeros duplicados\n");
+		return (0);
 	}
-	lst_switch(&listA[0]);
-	listB = lst_swap(listA, listB);
-	listA = lst_del(listA); // swap debe de ir seguido de un del
-	listA = lst_rotate(listA);
-	listA = lst_rev_rotate(listA);
-	//printf("check_dup: %d\n", check_dup());
-	lst_print(listA, listB, argc - 1);
+	ft_printf("listA creada\n");
+	//lst_switch(&listA[0]);
+	//listB = lst_swap(listA, listB);
+	//listA = lst_del(listA); // swap debe de ir seguido de un del
+	//listA = lst_rotate(listA);
+	//listA = lst_rev_rotate(listA);
+	//printf("check_dup: %d\n", check_dup(argc, argv));
+	lst_print(listA, listB);
+	lst_free(listA);
+	lst_free(listB);
+	system("leaks push_swap");
 	return (0);
 }

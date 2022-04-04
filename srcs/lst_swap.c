@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:22:02 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/30 15:48:54 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/03/31 17:47:11 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 p_list	*lst_swap(p_list *listA, p_list *listB)
 {
-	void	*value;
+	int	value;
 	if (listA)
 	{
 		value = listA->content;

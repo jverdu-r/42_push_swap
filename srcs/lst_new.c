@@ -6,13 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 17:10:13 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/29 19:21:47 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/04 18:15:16 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-p_list	*lst_new(void *content)
+p_list	*lst_new(int content)
 {
 	p_list	*new;
 

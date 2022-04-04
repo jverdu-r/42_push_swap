@@ -6,13 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 16:17:12 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/03/30 17:31:40 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/04 19:20:19 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-void	lst_print(p_list *listA, p_list *listB, int count)
+void	lst_print(p_list *listA, p_list *listB)
 {
 	p_list	*auxA;
 	p_list	*auxB;
@@ -22,7 +22,7 @@ void	lst_print(p_list *listA, p_list *listB, int count)
 	auxB = listB;
 	i = 0;
 	ft_printf("  A	|     B\n");
-	while (i < count)
+	while (i < lst_length(listA))
 	{
 		if (auxA)
 		{
@@ -35,7 +35,7 @@ void	lst_print(p_list *listA, p_list *listB, int count)
 			auxB = auxB->next;
 		}
 		else
-			ft_printf("\n");
+		ft_printf("\n");
 		i++;
 	}
 }
