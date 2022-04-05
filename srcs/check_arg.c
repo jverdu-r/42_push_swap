@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 15:49:32 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/04 19:40:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/05 16:03:30 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,5 @@ p_list	*check_arg(int count, char *args[])
 		i++;
 	}
 	free(ptr);
-	lst_print(list, list);
 	return (list);
 }

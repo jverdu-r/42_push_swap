@@ -6,13 +6,12 @@
 #    By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 19:03:06 by jverdu-r          #+#    #+#              #
-#    Updated: 2022/04/04 19:45:22 by jverdu-r         ###   ########.fr        #
+#    Updated: 2022/04/05 19:07:20 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS	= lst_add.c lst_del.c lst_length.c lst_new.c lst_print.c \
-		  lst_rev_rotate.c lst_rotate.c lst_swap.c lst_switch.c \
-		  lst_free.c lst_create.c check_arg.c push_swap.c
+SRCS	= lists.c push_swap_utils.c moves.c check_arg.c \
+		  check_order.c push_swap.c
 
 OBJS	= ${SRCS:.c=.o}
 
