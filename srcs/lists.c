@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:52:19 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/05 17:23:28 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/06 17:38:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ p_list	*lst_new(int content)
 	new = malloc(sizeof(p_list));
 	if (!new)
 		return (NULL);
-	new->content = content;
+	new->con = content;
 	new->next = NULL;
 	new->prev = NULL;
 	return (new);

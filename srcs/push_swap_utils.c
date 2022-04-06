@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:54:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/05 19:17:35 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:07:07 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ void	lst_print(p_list *listA, p_list *listB)
 	{
 		if (listA)
 		{
-			ft_printf(" %d", listA->content);
+			ft_printf(" %d", listA->con);
 			listA = listA->next;
 		}
 		if (listB)
 		{
-			ft_printf("	|	%d\n", listB->content);
+			ft_printf("	|	%d\n", listB->con);
 			listB = listB->next;
 		}
 		else

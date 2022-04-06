@@ -1,35 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_order.c                                      :+:      :+:    :+:   */
+/*   alg_U3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/05 15:52:06 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/06 19:26:56 by jverdu-r         ###   ########.fr       */
+/*   Created: 2022/04/06 16:31:39 by jverdu-r          #+#    #+#             */
+/*   Updated: 2022/04/06 16:39:34 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int	check_order(p_list *list)
+int	alg_U3(p_list *listA, p_list *listB, int moves)
 {
-	int	i;
-
-	i = 0;
-	while (list->next)
+	if (listA->content > listA->next->content)
 	{
-		if (list->next->con > list->con)
-		{
-			list = list->next;
-			i++;
-		}
-		else
-		{
-			i++;
-			return (i);
-		}
+		ft_printf("used 'sa'\n");
+		lst_swap(listA);
+		moves++;
+		lst_print(listA, listB);
 	}
-	i = 0;
-	return (i);
+	return (moves);
 }

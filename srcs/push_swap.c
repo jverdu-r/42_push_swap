@@ -6,13 +6,29 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/05 19:17:32 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:50:14 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
+int	algo_select(p_list *listA, p_list *listB, int moves)
+{
+	lst_print(listA, listB);
+	if (lst_length(listA) < 3)
+		moves = alg_U3(listA, listB, moves);
+	if (lst_length(listA) == 3)
+		moves = alg_3(listA, listB, moves);
+	return (moves);
+}	
 
+int	push_swap(p_list *listA, p_list *listB)
+{
+	int	moves;
+
+	moves = 0;
+	return (moves);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -28,19 +44,7 @@ int	main(int argc, char *argv[])
 		ft_printf("hay numeros duplicados\n");
 		return (0);
 	}
-	ft_printf("listA creada\n");
-	//lst_swap(&listA[0]);
-	//listB = lst_push(listA, listB);
-	//listA = lst_del(listA); //push debe de ir seguido de un del
-	//listA = lst_rotate(listA);
-	//listA = lst_rev_rotate(listA);
-	//printf("check_dup: %d\n", check_dup(argc, argv));
-	/*lst_print(listA, listB);
-	if (check_order(listA) == 0)
-		ft_printf("la lista esta ordenada: %i\n", check_order(listA));
-	else
-		ft_printf("la lista no esta ordenada: %i\n", check_order(listA));*/
-	lst_print(listA, listB);
+	push_swap(listA, listB);
 	lst_free(listA);
 	lst_free(listB);
 	system("leaks push_swap");

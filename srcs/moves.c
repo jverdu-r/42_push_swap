@@ -6,22 +6,22 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:33:25 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/05 19:28:16 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/06 19:19:58 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-p_list	*lst_push(p_list *listA, p_list *listB)
+void	lst_push(p_list *listA, p_list *listB)
 {
 	int	val;
 
 	if (listA)
 	{
-		val = listA->content;
+		val = listA->con;
 		lst_add(&listB, lst_new(val));
 	}
-	return (listB);
+	listA = lst_del(listA);
 }
 
 void	lst_swap(p_list *list)
@@ -30,40 +30,81 @@ void	lst_swap(p_list *list)
 
 	if (list->next)
 	{
-		content = list->content;
-		list->content = list->next->content;
-		list->next->content = content;
+		content = list->con;
+		list->con = list->next->con;
+		list->next->con = content;
 	}
 }
 
-p_list	*lst_rotate(p_list *list)
+void	lst_rotate(p_list *list)
 {
 	int	val;
 
-	val = list->content;
+	val = list->con;
 	while (list->next)
 	{
-		list->content = list->next->content;
+		list->con = list->next->con;
 		list = list->next;
 	}
-	list->content = val;
+	list->con = val;
 	while (list->prev)
 		list = list->prev;
-	return (list);
 }
 
-p_list	*lst_rev_rotate(p_list *list)
+void	lst_rev_rotate(p_list *list)
 {
 	int	val;
 
 	while (list->next)
 		list = list->next;
-	val = list->content;
+	val = list->con;
 	while (list->prev)
 	{
-		list->content = list->prev->content;
+		list->con = list->prev->con;
 		list = list->prev;
 	}
-	list->content = val;
-	return (list);
+	list->con = val;
+}
+
+int	move_select(p_list *listA, p_list *listB, char *move, int moves)
+{
+	if (ft_strcmp(move, "sa") == 0)
+		lst_swap(listA);
+	if (ft_strcmp(move, "sb") == 0)
+		lst_swap(listB);
+	if (ft_strcmp(move, "pa") == 0)
+		lst_push(listB, listA);
+	if (ft_strcmp(move, "pb") == 0)
+		lst_push(listA, listB);
+	if (ft_strcmp(move, "ra") == 0)
+		lst_rotate(listA);
+	if (ft_strcmp(move, "rb") == 0)
+		lst_rotate(listB);
+	if (ft_strcmp(move, "rra") == 0)
+		lst_rev_rotate(listA);
+	if (ft_strcmp(move, "rrb") == 0)
+		lst_rev_rotate(listB);
+	moves++;
+	return (moves);
+}
+
+int	move_select_bis(p_list *listA, p_list *listB, char *move, int moves)
+{
+	if (ft_strcmp(move, "ss") == 0)
+	{
+		lst_swap(listA);
+		lst_swap(listB);
+	}
+	if (ft_strcmp(move, "rr") == 0)
+	{
+		lst_rotate(listA);
+		lst_rotate(listB);
+	}
+	if (ft_strcmp(move, "rrr") == 0)
+	{
+		lst_rev_rotate(listA);
+		lst_rev_rotate(listB);
+	}
+	moves += 2;
+	return (moves);
 }

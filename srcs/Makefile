@@ -6,12 +6,12 @@
 #    By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 19:03:06 by jverdu-r          #+#    #+#              #
-#    Updated: 2022/04/05 19:07:20 by jverdu-r         ###   ########.fr        #
+#    Updated: 2022/04/06 19:06:05 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRCS	= lists.c push_swap_utils.c moves.c check_arg.c \
-		  check_order.c push_swap.c
+		  check_order.c push_swap.c alg_U3.c alg_3.c
 
 OBJS	= ${SRCS:.c=.o}
 
