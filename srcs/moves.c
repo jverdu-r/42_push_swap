@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:33:25 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/06 19:19:58 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/07 20:17:39 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	lst_push(p_list *listA, p_list *listB)
 {
-	int	val;
+	if (!listB)
+		*listB = *listA;
+	else
+		lst_add(&listB, listA);
 
-	if (listA)
-	{
-		val = listA->con;
-		lst_add(&listB, lst_new(val));
-	}
-	listA = lst_del(listA);
 }
 
 void	lst_swap(p_list *list)
@@ -68,6 +65,7 @@ void	lst_rev_rotate(p_list *list)
 
 int	move_select(p_list *listA, p_list *listB, char *move, int moves)
 {
+	ft_printf("used : %s\n", move);
 	if (ft_strcmp(move, "sa") == 0)
 		lst_swap(listA);
 	if (ft_strcmp(move, "sb") == 0)
@@ -84,12 +82,14 @@ int	move_select(p_list *listA, p_list *listB, char *move, int moves)
 		lst_rev_rotate(listA);
 	if (ft_strcmp(move, "rrb") == 0)
 		lst_rev_rotate(listB);
+	lst_print(listA, listB);
 	moves++;
 	return (moves);
 }
 
 int	move_select_bis(p_list *listA, p_list *listB, char *move, int moves)
 {
+	ft_printf("used : %s\n", move);
 	if (ft_strcmp(move, "ss") == 0)
 	{
 		lst_swap(listA);
@@ -105,6 +105,7 @@ int	move_select_bis(p_list *listA, p_list *listB, char *move, int moves)
 		lst_rev_rotate(listA);
 		lst_rev_rotate(listB);
 	}
+	lst_print(listA, listB);
 	moves += 2;
 	return (moves);
 }
