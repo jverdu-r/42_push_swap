@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:45:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/07 19:30:05 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:48:28 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ typedef struct z_list
 p_list	*lst_new(int content);
 p_list	*lst_create(int *ptr, p_list *list);
 p_list	*check_arg(int count, char *args[]);
-void	lst_del(p_list **list);
+void	lst_del(p_list *list);
 void	lst_rotate(p_list *list);
 void	lst_rev_rotate(p_list *list);
-void	lst_push(p_list *listA, p_list *listB);
+p_list	*lst_push(p_list *listA, p_list *listB);
 void	lst_add(p_list **head, p_list *new);
 void	lst_swap(p_list *list);
 void	lst_print(p_list *listA, p_list *listB);

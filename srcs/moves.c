@@ -6,19 +6,23 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:33:25 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/07 20:17:39 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/08 15:48:33 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-void	lst_push(p_list *listA, p_list *listB)
+p_list	*lst_push(p_list *listA, p_list *listB)
 {
-	if (!listB)
-		*listB = *listA;
-	else
-		lst_add(&listB, listA);
+	int	val;
 
+	val = listA->con;
+	lst_add(&listB, lst_new(val));
+	lst_del(&listA[0]);
+	ft_printf("print del push\n");
+	lst_print(listA, listB);
+	ft_printf("fin del print del push\n");
+	return (listB);
 }
 
 void	lst_swap(p_list *list)
@@ -71,9 +75,9 @@ int	move_select(p_list *listA, p_list *listB, char *move, int moves)
 	if (ft_strcmp(move, "sb") == 0)
 		lst_swap(listB);
 	if (ft_strcmp(move, "pa") == 0)
-		lst_push(listB, listA);
+		listB = lst_push(listB, listA);
 	if (ft_strcmp(move, "pb") == 0)
-		lst_push(listA, listB);
+		listA = lst_push(listA, listB);
 	if (ft_strcmp(move, "ra") == 0)
 		lst_rotate(listA);
 	if (ft_strcmp(move, "rb") == 0)
