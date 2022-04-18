@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/08 15:46:01 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/18 19:56:05 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	algo_select(p_list **listA, p_list **listB, int moves)
 	else if (lst_length(*listA) == 3)
 		moves = alg_3(*listA, *listB, moves);
 	else if (lst_length(*listA) > 3 && lst_length(*listA) < 6)
-		moves = alg_5(*listA, *listB, moves);
+		moves = alg_5(listA, listB, moves);
 	return (moves);
 }	
 
@@ -41,8 +41,9 @@ int	main(int argc, char *argv[])
 
 	if (!argv[1])
 		return (0);
-	moves = 0;
+	listA = NULL;
 	listB = NULL;
+	moves = 0;
 	listA = check_arg(argc, argv);
 	if (!listA)
 	{
@@ -53,12 +54,10 @@ int	main(int argc, char *argv[])
 		moves = push_swap(&listA, &listB);
 	else
 		lst_print(listA, listB);
-	//lst_push(listA, listB);
-	//lst_del(&listA);
-	//lst_print(listA, listB);
+	lst_print(listA, listB);
 	lst_free(listA);
 	lst_free(listB);
 	ft_printf("numero de movimientos: %i\n", moves);
-	//system("leaks push_swap");
+	system("leaks push_swap");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:52:19 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/08 15:33:01 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/18 20:05:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ void	lst_add(p_list **head, p_list *new)
 	}
 }
 
-void	lst_del(p_list *list)
+void	lst_del(p_list **list)
 {
-	p_list	*aux;
-
-	aux = list->next;
-	free(list);
-	list[0] = *aux;
+	if (list && *list)
+	{
+		list[0] = list[0]->next;
+		free(list[0]->prev);
+		list[0]->prev = NULL;
+	}
 }
 
 p_list	*lst_create(int *ptr, p_list *list)
