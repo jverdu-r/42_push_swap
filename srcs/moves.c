@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:33:25 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/18 20:10:29 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/19 18:49:32 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,14 @@
 
 void	lst_push(p_list **listA, p_list **listB)
 {
-	p_list	*aux;
 	int		val;
 
-	val = listB[0]->con;
-	aux = lst_new(val);
-	aux->next = *listA;
-	*listA = aux;
-	if (lst_length(listB[0]) > 1)
+	if (listB)
+	{
+		val = listB[0]->con;
+		lst_add(listA, lst_new(val));
 		lst_del(listB);
-	else
-		listB[0] = NULL; 
+	}
 }
 
 void	lst_swap(p_list *list)
