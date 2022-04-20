@@ -6,17 +6,17 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:52:19 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/19 19:39:58 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:45:00 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-p_list	*lst_new(int content)
+t_pile	*lst_new(int content)
 {
-	p_list	*new;
+	t_pile	*new;
 
-	new = malloc(sizeof(p_list));
+	new = malloc(sizeof(t_pile));
 	if (!new)
 		return (NULL);
 	new->con = content;
@@ -25,9 +25,9 @@ p_list	*lst_new(int content)
 	return (new);
 }
 
-void	lst_add(p_list **head, p_list *new)
+void	lst_add(t_pile **head, t_pile *new)
 {
-	p_list	*aux;
+	t_pile	*aux;
 
 	aux = *head;
 	if (*head == NULL)
@@ -41,7 +41,28 @@ void	lst_add(p_list **head, p_list *new)
 	}
 }
 
-void	lst_del(p_list **list)
+void	lst_add_back(t_pile **head, t_pile *new)
+{
+	t_pile	*aux;
+
+	aux = *head;
+	if (*head == NULL)
+		*head = new;
+	else
+	{
+		while (aux)
+		{
+			if (!aux->next)
+			{
+				aux->next = new;
+				new->prev = aux;
+				aux = new;
+			}
+			aux = aux->next;
+		}
+	}
+}
+void	lst_del(t_pile **list)
 {
 	if (list && *list)
 	{
@@ -59,29 +80,15 @@ void	lst_del(p_list **list)
 	}
 }
 
-p_list	*lst_create(int *ptr, p_list *list)
+t_pile	*lst_create(int *ptr, t_pile *list)
 {
 	int	i;
 
 	i = 0;
 	while (ptr[i])
 	{
-		lst_add(&list, lst_new(ptr[i]));
+		lst_add_back(&list, lst_new(ptr[i]));
 		i++;
 	}
 	return (list);
-}
-
-void	lst_free(p_list *list)
-{
-	if (list)
-	{
-		while (list->next)
-		{
-			list = list->next;
-			free(list->prev);
-		}
-		if (!list->next)
-			free(list);
-	}
 }

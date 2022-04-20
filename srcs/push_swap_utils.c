@@ -6,16 +6,16 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:54:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/18 16:20:54 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:38:35 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int	lst_length(p_list *list)
+int	lst_length(t_pile *list)
 {
 	int		i;
-	p_list	*aux;
+	t_pile	*aux;
 
 	if (!list)
 		return (0);
@@ -29,7 +29,7 @@ int	lst_length(p_list *list)
 	return (i);
 }
 
-void	lst_print(p_list *listA, p_list *listB)
+void	lst_print(t_pile *listA, t_pile *listB)
 {
 	int	i;
 	int	j;
@@ -55,5 +55,19 @@ void	lst_print(p_list *listA, p_list *listB)
 		else
 			ft_printf("	|\n");
 		j++;
+	}
+}
+
+void	lst_free(t_pile *list)
+{
+	if (list)
+	{
+		while (list->next)
+		{
+			list = list->next;
+			free(list->prev);
+		}
+		if (!list->next)
+			free(list);
 	}
 }

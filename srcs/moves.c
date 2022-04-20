@@ -6,13 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 16:33:25 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/19 18:49:32 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/20 17:22:24 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-void	lst_push(p_list **listA, p_list **listB)
+void	lst_push(t_pile **listA, t_pile **listB)
 {
 	int		val;
 
@@ -24,7 +24,7 @@ void	lst_push(p_list **listA, p_list **listB)
 	}
 }
 
-void	lst_swap(p_list *list)
+void	lst_swap(t_pile *list)
 {
 	int	content;
 
@@ -36,7 +36,7 @@ void	lst_swap(p_list *list)
 	}
 }
 
-void	lst_rotate(p_list *list)
+void	lst_rotate(t_pile *list)
 {
 	int	val;
 
@@ -51,7 +51,7 @@ void	lst_rotate(p_list *list)
 		list = list->prev;
 }
 
-void	lst_rev_rotate(p_list *list)
+void	lst_rev_rotate(t_pile *list)
 {
 	int	val;
 
@@ -64,51 +64,4 @@ void	lst_rev_rotate(p_list *list)
 		list = list->prev;
 	}
 	list->con = val;
-}
-
-int	move_select(p_list **listA, p_list **listB, char *move, int moves)
-{
-	ft_printf("used : %s\n", move);
-	if (ft_strcmp(move, "sa") == 0)
-		lst_swap(*listA);
-	if (ft_strcmp(move, "sb") == 0)
-		lst_swap(*listB);
-	if (ft_strcmp(move, "pa") == 0)
-		lst_push(listA, listB);
-	if (ft_strcmp(move, "pb") == 0)
-		lst_push(listB, listA);
-	if (ft_strcmp(move, "ra") == 0)
-		lst_rotate(*listA);
-	if (ft_strcmp(move, "rb") == 0)
-		lst_rotate(*listB);
-	if (ft_strcmp(move, "rra") == 0)
-		lst_rev_rotate(*listA);
-	if (ft_strcmp(move, "rrb") == 0)
-		lst_rev_rotate(*listB);
-	lst_print(*listA, *listB);
-	moves++;
-	return (moves);
-}
-
-int	move_select_bis(p_list **listA, p_list **listB, char *move, int moves)
-{
-	ft_printf("used : %s\n", move);
-	if (ft_strcmp(move, "ss") == 0)
-	{
-		lst_swap(*listA);
-		lst_swap(*listB);
-	}
-	if (ft_strcmp(move, "rr") == 0)
-	{
-		lst_rotate(*listA);
-		lst_rotate(*listB);
-	}
-	if (ft_strcmp(move, "rrr") == 0)
-	{
-		lst_rev_rotate(*listA);
-		lst_rev_rotate(*listB);
-	}
-	lst_print(*listA, *listB);
-	moves += 2;
-	return (moves);
 }

@@ -6,24 +6,24 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/07 17:09:56 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/19 19:39:56 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/04/20 19:49:13 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int re_join(p_list **la, p_list **lb, int moves)
+int	re_join(t_pile **la, t_pile **lb, int moves)
 {
 	if (lb[0]->con > la[0]->next->next->con)
 	{
 		moves = move_select(la, lb, "pa", moves);
-		moves = move_select(la, lb, "rra", moves);
+		moves = move_select(la, lb, "ra", moves);
 	}
 	while (lb[0])
 	{
 		if (la[0]->con > lb[0]->con)
 			moves = move_select(la, lb, "pa", moves);
-		else
+		else if (la[0]->con < lb[0]->con)
 			moves = move_select(la, lb, "ra", moves);
 	}
 	while (check_order(*la) != 0)
@@ -31,7 +31,7 @@ int re_join(p_list **la, p_list **lb, int moves)
 	return (moves);
 }
 
-int	alg_5(p_list **la, p_list **lb, int moves)
+int	alg_5(t_pile **la, t_pile **lb, int moves)
 {
 	if (lst_length(*la) < 5)
 	{
