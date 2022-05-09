@@ -1,58 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_arg.c                                        :+:      :+:    :+:   */
+/*   check_arg2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/04 15:49:32 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/21 19:08:26 by jverdu-r         ###   ########.fr       */
+/*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
+/*   Updated: 2022/05/09 18:48:51 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int	*check_dup(int	*ptr)
+t_pile  *check_dup(t_pile *list)
 {
-	int	i;
-	int	j;
+	t_pile	*list2;
 
-	i = 1;
-	while (i < ptr[0])
+	list2 = list;
+	while (list->next)
 	{
-		printf("check_dup: %i\n", ptr[i]);
-		j = i + 1;
-		while (ptr[j])
+		if (list->next)
+			list2 = list->next;
+		while (list2->next)
 		{
-			if (ptr[i] == ptr[j])
+			if (list->con == list2->con)
+			{
+				lst_free(list);
 				return (NULL);
-			j++;
+			}
+			else
+				list2 = list2->next;
 		}
-		i++;
+		list = list->next;
 	}
-	return (ptr);
+	while (list->prev)
+		list = list->prev;
+    return (list);
 }
 
-void	free_aux(char *aux[])
+t_pile	*check_num(char **ptr)
 {
-	int	i;
-
-	i = 0;
-	while (aux[i])
-		free(aux[i++]);
-	free(aux);
-}
-
-int	*check_num(char **ptr, int i)
-{
-	int	*pnum;
+	int	pnum;
 	int	j;
 	int	a;
+    t_pile  *list;
 
 	j = 1;
-	pnum = malloc(sizeof(int) * i);
-	if (!pnum)
-		return (NULL);
+    list = NULL;
 	while (ptr[j])
 	{
 		a = 0;
@@ -64,18 +58,18 @@ int	*check_num(char **ptr, int i)
 				return (NULL);
 			a++;
 		}
-		pnum[j] = ft_atoi(ptr[j]);
-		printf("pnum: %i\n", pnum[j]);
+		pnum = ft_atoi(ptr[j]);
+		//printf("pnum: %i\n", pnum);
+        lst_add(&list, lst_new(pnum));
 		j++;
 	}
-	pnum[0] = j;
-	pnum = check_dup(pnum);
-	return (pnum);
+	list = check_dup(list);
+	return (list);
 }
-int	*splice_args(int count, char *args[])
+t_pile  *splice_args(int count, char *args[])
 {
 	char	**ptr;
-	int		*pnum;
+	t_pile  *pnum;
 	int		i;
 
 	i = 0;
@@ -85,27 +79,18 @@ int	*splice_args(int count, char *args[])
 		ptr = args;
 	while (ptr[i])
 		i++;
-	pnum = check_num(ptr, i);
+	pnum = check_num(ptr);
 	return (pnum);
 }
 
 t_pile	*check_arg(int count, char *args[])
 {
-	int		*ptr;
 	t_pile	*list;
-	int		i;
 
 	list = NULL;
-	ptr = splice_args(count, args);
-	if (!ptr)
+	list = splice_args(count, args);
+	if (!list)
 		return (NULL);
-	i = 1;
-	while (i < ptr[0])
-	{
-		ft_printf("ptr[%i]: %i\n", i, ptr[i]);
-		lst_add(&list, lst_new(ptr[i]));
-		i++;
-	}
-	free(ptr);
 	return (list);
 }
+
