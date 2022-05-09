@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:54:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/20 17:38:35 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:26:12 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,33 @@ void	lst_free(t_pile *list)
 		if (!list->next)
 			free(list);
 	}
+}
+
+int	*aproximity(t_pile *list)
+{
+	int	j;
+	int	i;
+	int	idx;
+	int	*res;
+	t_pile *lst;
+	
+	lst = list;
+	i = 0;
+	idx = lst->con;
+	res = malloc(sizeof(int) * 2);
+	j = lst_length(list) / 2;
+	while (lst->next)
+	{
+		if (idx > lst->con)
+		{
+			idx = lst->con;
+			printf("idx_loop: %i\n", idx);
+		}
+		lst = lst->next;
+	}
+	res[0] = j;
+	res[1] = idx;
+	printf("idx: %i\n", res[1]);
+	printf("j: %i\n", res[0]);
+	return (res);
 }

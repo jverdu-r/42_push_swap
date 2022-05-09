@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/04/21 18:35:46 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/09 17:25:52 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	algo_select(t_pile **listA, t_pile **listB, int moves)
 {
+	int *vals;
+
+	vals = NULL;
 	lst_print(*listA, *listB);
 	if (lst_length(*listA) < 3)
 		moves = alg_u3(*listA, *listB, moves);
@@ -21,6 +24,13 @@ int	algo_select(t_pile **listA, t_pile **listB, int moves)
 		moves = alg_3(*listA, *listB, moves);
 	else if (lst_length(*listA) > 3 && lst_length(*listA) < 6)
 		moves = alg_5(listA, listB, moves);
+	else if (lst_length(*listA) > 5)
+		{
+			vals = aproximity(*listA);
+			ft_printf("mitad de tabla: %d\n", vals[0]);
+			ft_printf("numero mas bajo: %d\n", vals[1]);
+			free(vals);
+		}
 	return (moves);
 }	
 
@@ -54,7 +64,7 @@ int	main(int argc, char *argv[])
 		moves = push_swap(&list_a, &list_b);
 	else
 		lst_print(list_a, list_b);
-	lst_print(list_a, list_b);
+	//lst_print(list_a, list_b);
 	lst_free(list_a);
 	lst_free(list_b);
 	ft_printf("numero de movimientos: %i\n", moves);
