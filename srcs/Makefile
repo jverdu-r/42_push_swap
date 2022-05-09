@@ -30,7 +30,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS  = -Wall -Werror -Wextra
+CFLAGS  = -Wall -Werror -Wextra -g3
 
 
 .c.o:
