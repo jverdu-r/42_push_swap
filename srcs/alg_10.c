@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   alg_5.c                                            :+:      :+:    :+:   */
+/*   alg_10.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/07 17:09:56 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/11 18:34:27 by jverdu-r         ###   ########.fr       */
+/*   Created: 2022/05/10 16:26:23 by jverdu-r          #+#    #+#             */
+/*   Updated: 2022/05/12 18:20:25 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,54 @@ int	re_join(t_pile **la, t_pile **lb, int moves)
 	return (moves);
 }
 
-int	alg_5(t_pile **la, t_pile **lb, int moves)
+int	push_ab(t_pile **la, t_pile **lb, int moves, int order, int check)
 {
-	if (lst_length(*la) < 5)
+	if (order == 1)
 	{
+		while (la[0]->con != check)
+		{
+			moves = move_select(la, lb, "ra", moves);
+		}
 		moves = move_select(la, lb, "pb", moves);
-		moves = alg_3(*la, *lb, moves);
-		moves = re_join(la, lb, moves);
 	}
 	else
 	{
+		while (la[0]->con != check)
+		{
+			moves = move_select(la, lb, "rra", moves);
+		}
 		moves = move_select(la, lb, "pb", moves);
-		moves = move_select(la, lb, "pb", moves);
-		if (lb[0]->con < lb[0]->next->con)
-			moves = move_select(la, lb, "sb", moves);
-		moves = alg_3(*la, *lb, moves);
-		moves = re_join(la, lb, moves);
 	}
+	return (moves);
+}
+int	push_order(t_pile **la, t_pile **lb, int moves)
+{
+	int		*mid_min;
+	int		idx;
+	t_pile	*srch;
+
+	mid_min = aproximity(*la);
+	idx = 0;
+	srch = *la;
+	while (srch->con != mid_min[1])
+	{
+		idx++;
+		srch = srch->next;
+	}
+	if (idx < mid_min[0])
+		moves = push_ab(la, lb, moves, 1, mid_min[1]);
+	else
+		moves = push_ab(la, lb, moves, 0, mid_min[1]);
+	free (mid_min);
+	return (moves);
+}
+
+int	alg_10(t_pile **la, t_pile **lb, int moves)
+{
+	while (lst_length(*la) != 3)
+		moves = push_order(la, lb, moves);
+	if (check_order(*la) > 0)
+		moves = alg_3(*la, *lb, moves);
+	moves = re_join(la, lb, moves);
 	return (moves);
 }
