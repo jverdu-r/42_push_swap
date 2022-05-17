@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/11 17:12:50 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/12 19:29:44 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:22:02 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,28 +57,24 @@ int	push_abc(t_pile **la, t_pile **lb, int moves, int order, int check)
 
 int	*aproximity_chunk(t_pile *list, int	key)
 {
-	int		i;
 	int		pos;
 	int		*res;
 	t_pile	*lst;
 
 	lst = list;
-	i = 0;
-	pos = -1;
+	pos = 0;
 	res = malloc(sizeof(int) * 2);
 	res[0] = lst_length(list) / 2;
 	while (lst)
 	{
 		if (lst->con <= key)
 		{
-			if ((i > res[0] && i > pos) || (i < res[0] && pos < i ))
-			{
-				res[1] = lst->con;
-				pos = i;
-			}
+			res[1] = lst->con;
+			if (pos < res[0])
+				return (res);
 		}
+		pos++;
 		lst = lst->next;
-		i++;
 	}
 	return (res);
 }
@@ -115,7 +111,7 @@ int	get_chunks(t_pile **la, t_pile **lb, int moves, int *keys)
 	a = 0;
 	len = lst_length(*la);
 	key = len / 4;
-	while (lst_length(*la) > 26)
+	while (lst_length(*la) >= (len / 4))
 	{
 		moves = push_chunks(la, lb, moves, keys[a]);
 		if (i == key)

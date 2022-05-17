@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/12 19:31:11 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:25:31 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	algo_select(t_pile **listA, t_pile **listB, int moves)
 {
-	int *vals;
+	int chunk;
 
-	vals = NULL;
+//	chunk = lst_length(*listA) / 25;
+	chunk = 4;
 //	lst_print(*listA, *listB);
 	if (lst_length(*listA) < 3)
 		moves = alg_u3(*listA, *listB, moves);
@@ -24,10 +25,10 @@ int	algo_select(t_pile **listA, t_pile **listB, int moves)
 		moves = alg_3(*listA, *listB, moves);
 	else if (lst_length(*listA) > 3 && lst_length(*listA) < 11)
 		moves = alg_10(listA, listB, moves);
-	else if (lst_length(*listA) > 10 && lst_length(*listA) < 101)
-		moves = alg_100(listA, listB, moves);
-	else if (lst_length(*listA) > 100)
-		moves = alg_big(listA, listB, moves);
+	else if (lst_length(*listA) > 10)
+		moves = alg_big(listA, listB, moves, chunk);
+/*	else if (lst_length(*listA) > 100)
+		moves = alg_big(listA, listB, moves);*/
 	return (moves);
 }	
 

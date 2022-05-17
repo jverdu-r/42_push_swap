@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:45:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/12 18:48:28 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:23:47 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,15 @@ int		alg_u3(t_pile *la, t_pile *lb, int moves);
 int		alg_3(t_pile *la, t_pile *lb, int moves);
 int		alg_10(t_pile **la, t_pile **lb, int moves);
 int		alg_100(t_pile **la, t_pile **lb, int moves);
-int		alg_big(t_pile **la, t_pile **lb, int moves);
+int		alg_big(t_pile **la, t_pile **lb, int moves, int chunk);
 int		*aproximity(t_pile *list);
 int		*aproximity_big(t_pile *list);
+int		*aproximity_chunk(t_pile *list, int key);
 int		get_chunks(t_pile **la, t_pile **lb, int moves, int *keys);
-int		get_chunks_big(t_pile **la, t_pile **lb, int moves, int *keys);
+int		get_chunks_big(t_pile **la, t_pile **lb, int moves, int *keys, int chunk);
+int		push_abc(t_pile **la, t_pile **lb, int moves, int order, int check);
 int		push_order(t_pile **la, t_pile **lb, int moves);
 int		push_order_big(t_pile **la, t_pile **lb, int moves);
+int		push_chunks(t_pile **la, t_pile **lb, int moves, int key);
 
 #endif

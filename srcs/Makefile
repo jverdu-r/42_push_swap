@@ -6,7 +6,7 @@
 #    By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 19:03:06 by jverdu-r          #+#    #+#              #
-#    Updated: 2022/05/12 19:53:19 by jverdu-r         ###   ########.fr        #
+#    Updated: 2022/05/17 20:48:30 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ CC		= gcc
 
 RM		= rm -f
 
-#CFLAGS  = -Wall -Werror -Wextra -g3
+#CFLAGS  = -Wall -Werror -Wextra -glldb -fsanitize=address
 
 
 .c.o:

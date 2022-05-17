@@ -6,13 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:37:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/12 20:08:29 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/17 21:24:21 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-int	*get_key_big(t_pile *lk)
+int	*get_key_big(t_pile *lk, int chunk)
 {
 	int	len;
 	int	idx;
@@ -20,11 +20,11 @@ int	*get_key_big(t_pile *lk)
 	int	i;
 	int	a;
 
-	key = malloc(sizeof(int) * 8);
+	key = malloc(sizeof(int) * chunk);
 	len = lst_length(lk);
 	i = 0;
 	a = 0;
-	idx = len / 8;
+	idx = len / chunk;
 	while (lk->next)
 	{
 		if (i == idx)
@@ -54,7 +54,7 @@ t_pile	*copy_lst_big(t_pile *la)
 	lst_add(&res, lst_new(lst->con));
 	return (res);
 }
-int	*la_lk_big(t_pile *la)
+int	*la_lk_big(t_pile *la, int chunk)
 {
 	t_pile	*lk;
 	int		aux;
@@ -76,25 +76,25 @@ int	*la_lk_big(t_pile *la)
 		while (lk->prev)
 			lk = lk->prev;
 	}
-//	lst_print(lk, la);
-	key = get_key_big(lk);
+	lst_print(lk, la);
+	key = get_key_big(lk, chunk);
 	lst_free(lk);
 	return(key);
 }
 
-int	alg_big(t_pile **la, t_pile **lb,  int moves)
+int	alg_big(t_pile **la, t_pile **lb,  int moves, int chunk)
 {
 	int *keys;
-//	int i;
+	int i;
 
-//	i = 0;
-	keys = la_lk_big(*la);
+	i = 0;
+	keys = la_lk_big(*la, chunk);
 /*	while (i < 8)
 	{
 		ft_printf("key[%i]: %i\n", i, keys[i]);
 		i++;
 	}*/
-	moves = get_chunks(la, lb, moves, keys);
+	moves = get_chunks_big(la, lb, moves, keys, chunk);
 	free(keys);
 	return (moves);
 }
