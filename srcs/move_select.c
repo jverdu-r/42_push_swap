@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 16:29:36 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/18 18:44:32 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:11:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	move_select(t_pile **listA, t_pile **listB, char *move, int moves)
 {
-	ft_printf("used: %s\n", move);
+	ft_printf("%s\n", move);
 	if (ft_strcmp(move, "sa") == 0)
 		lst_swap(*listA);
 	if (ft_strcmp(move, "sb") == 0)
@@ -31,7 +31,7 @@ int	move_select(t_pile **listA, t_pile **listB, char *move, int moves)
 		lst_rev_rotate(*listA);
 	if (ft_strcmp(move, "rrb") == 0)
 		lst_rev_rotate(*listB);
-	lst_print(*listA, *listB);
+//	lst_print(*listA, *listB);
 	moves++;
 	return (moves);
 }

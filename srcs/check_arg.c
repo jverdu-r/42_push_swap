@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/18 19:25:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/19 19:50:58 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ t_pile	*check_dup(t_pile *list)
 	return (list);
 }
 
-t_pile	*check_num(char **ptr)
+t_pile	*check_num(char **ptr, int j)
 {
 	int		pnum;
-	int		j;
 	int		a;
 	t_pile	*list;
 
-	j = 1;
 	list = NULL;
 	while (ptr[j])
 	{
@@ -59,27 +57,30 @@ t_pile	*check_num(char **ptr)
 			a++;
 		}
 		pnum = ft_atoi(ptr[j]);
-		lst_add(&list, lst_new(pnum));
+		lst_add_back(&list, lst_new(pnum));
 		j++;
 	}
 	list = check_dup(list);
 	return (list);
 }
 
-t_pile	*splice_args(int count, char *args[])
+t_pile	*splice_args(int count, char **args)
 {
 	char	**ptr;
 	t_pile	*pnum;
 	int		i;
+	int		j;
 
 	i = 0;
+	j = 1;
 	if (count < 3)
+	{
 		ptr = ft_split(args[1], ' ');
+		j = 0;
+	}
 	else
 		ptr = args;
-	while (ptr[i])
-		i++;
-	pnum = check_num(ptr);
+	pnum = check_num(ptr, j);
 	return (pnum);
 }
 
