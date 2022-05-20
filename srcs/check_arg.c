@@ -6,11 +6,17 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/19 19:50:58 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:29:47 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
+
+t_pile	*null_list(t_pile *list)
+{
+	lst_free(list);
+	return (NULL);
+}
 
 t_pile	*check_dup(t_pile *list)
 {
@@ -24,15 +30,14 @@ t_pile	*check_dup(t_pile *list)
 		while (list2->next)
 		{
 			if (list->con == list2->con)
-			{
-				lst_free(list);
-				return (NULL);
-			}
+				return (null_list(list));
 			else
 				list2 = list2->next;
 		}
 		list = list->next;
 	}
+	if (list->con == list2->con && lst_length(list) > 1)
+		return (null_list(list));
 	while (list->prev)
 		list = list->prev;
 	return (list);
@@ -77,10 +82,19 @@ t_pile	*splice_args(int count, char **args)
 	{
 		ptr = ft_split(args[1], ' ');
 		j = 0;
+		pnum = check_num(ptr, j);
+		while (ptr[i])
+		{
+			free(ptr[i]);
+			i++;
+		}
+		free(ptr);
 	}
 	else
+	{
 		ptr = args;
-	pnum = check_num(ptr, j);
+		pnum = check_num(ptr, j);
+	}
 	return (pnum);
 }
 

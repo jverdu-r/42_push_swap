@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/19 19:58:48 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/20 18:31:45 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	algo_select(t_pile **listA, t_pile **listB, int moves)
 {
+	int	chunk;
+
 	if (lst_length(*listA) < 3)
 		moves = alg_u3(*listA, *listB, moves);
 	else if (lst_length(*listA) == 3)
@@ -22,11 +24,13 @@ int	algo_select(t_pile **listA, t_pile **listB, int moves)
 		moves = alg_10(listA, listB, moves);
 	else if (lst_length(*listA) > 10 && lst_length(*listA) < 101)
 	{
-		moves = alg_big(listA, listB, moves, 4);
+		chunk = lst_length(*listA) / 25;
+		moves = alg_big(listA, listB, moves, chunk);
 	}
 	else if (lst_length(*listA) > 100)
 	{
-		moves = alg_big(listA, listB, moves, 8);
+		chunk = lst_length(*listA) / 38;
+		moves = alg_big(listA, listB, moves, chunk);
 	}
 	return (moves);
 }	
