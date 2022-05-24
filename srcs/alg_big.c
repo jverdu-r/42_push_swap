@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 18:37:11 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/18 19:40:12 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/24 18:01:06 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int	*la_lk_big(t_pile *la, int chunk)
 		while (lk->prev)
 			lk = lk->prev;
 	}
-	lst_print(lk, la);
 	key = get_key_big(lk, chunk);
 	lst_free(lk);
 	return (key);
