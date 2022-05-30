@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/05/20 18:29:47 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/05/30 19:52:46 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_pile	*check_num(char **ptr, int j)
 				return (NULL);
 			a++;
 		}
+		if (ft_strlen(ptr[j]) > 11)
+			return (null_list(list));
 		pnum = ft_atoi(ptr[j]);
 		lst_add_back(&list, lst_new(pnum));
 		j++;
