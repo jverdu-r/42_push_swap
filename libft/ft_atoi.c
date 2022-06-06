@@ -6,11 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:23:03 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/02/08 17:45:27 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/06 18:00:18 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int	overload(int val)
 {
@@ -43,6 +45,8 @@ int	ft_atoi(const char *str)
 			return (overload(neg));
 		i++;
 	}
+	if ((res >= 2147483649 && neg == -1) || (res >= 2147483648 && neg == 1))
+		return (-1);
 	res = res * neg;
 	return ((int)res);
 }
