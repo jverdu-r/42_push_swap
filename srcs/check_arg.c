@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/06 18:05:51 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:21:38 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 t_pile	*null_list(t_pile *list)
 {
+	if (list)
+	{
+		while (list->prev)
+			list = list->prev;
+	}
 	lst_free(list);
 	return (NULL);
 }
@@ -31,39 +36,41 @@ t_pile	*check_dup(t_pile *list)
 		{
 			if (list->con == list2->con)
 				return (null_list(list));
-			else
-				list2 = list2->next;
+			list2 = list2->next;
 		}
+		if (list->con == list2->con)
+			return (null_list(list));
 		list = list->next;
 	}
-	if (list->con == list2->con && lst_length(list) >= 1)
-		return (null_list(list));
 	while (list->prev)
 		list = list->prev;
+	if (list->con == list2->con && lst_length(list) > 1)
+		return (null_list(list));
 	return (list);
 }
 
-t_pile	*check_num(char **ptr, int j)
+t_pile	*check_num(char **pt, int j)
 {
 	int		pnum;
 	int		a;
 	t_pile	*list;
 
 	list = NULL;
-	while (ptr[j])
+	while (pt[j])
 	{
 		a = 0;
-		while (ptr[j][a])
+		while (pt[j][a])
 		{
-			if (ptr[j][a] == '-' || ptr[j][a] == '+')
+			if (pt[j][a] == '-' || pt[j][a] == '+')
 				a++;
-			else if (ft_isdigit(ptr[j][a] - 48) == 1)
-				return (NULL);
+			else if (ft_isdigit(pt[j][a] - 48) == 1)
+				return (null_list(list));
 			a++;
 		}
-		if (ft_strlen(ptr[j]) >= 10 && ft_atoi(ptr[j]) == -1 && ptr[j][0] != 0)
+		if ((ft_strlen(pt[j]) >= 10 && ft_atoi(pt[j]) == -1 && pt[j][0] != 0) \
+			|| (ft_strlen(pt[j]) > 11))
 			return (null_list(list));
-		pnum = ft_atoi(ptr[j]);
+		pnum = ft_atoi(pt[j]);
 		lst_add_back(&list, lst_new(pnum));
 		j++;
 	}

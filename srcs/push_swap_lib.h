@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:45:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/06 19:14:52 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/07 19:41:59 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		move_select(t_pile **listA, t_pile **listB, char *move, int moves);
 int		move_select_bis(t_pile **listA, t_pile **listB, char *move, int moves);
 int		lst_length(t_pile *list);
 int		check_order(t_pile *list);
-int		alg_u3(t_pile *la, t_pile *lb, int moves);
+int		alg_u3(t_pile *la, int moves);
 int		alg_3(t_pile *la, t_pile *lb, int moves);
 int		alg_10(t_pile **la, t_pile **lb, int moves);
 int		alg_100(t_pile **la, t_pile **lb, int moves);

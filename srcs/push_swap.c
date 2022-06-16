@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/06 18:06:23 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/16 19:22:02 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	algo_select(t_pile **listA, t_pile **listB, int moves)
 	int	chunk;
 
 	if (lst_length(*listA) < 3)
-		moves = alg_u3(*listA, *listB, moves);
+		moves = alg_u3(*listA, moves);
 	else if (lst_length(*listA) == 3)
 		moves = alg_3(*listA, *listB, moves);
 	else if (lst_length(*listA) > 3 && lst_length(*listA) < 11)
@@ -43,6 +43,11 @@ int	push_swap(t_pile **listA, t_pile **listB)
 	return (moves);
 }
 
+void	leaks(void)
+{
+	system("leaks push_swap");
+}
+
 int	main(int argc, char *argv[])
 {
 	t_pile	*list_a;
@@ -56,12 +61,12 @@ int	main(int argc, char *argv[])
 	moves = 0;
 	list_a = check_arg(argc, argv);
 	if (!list_a)
-	{
 		ft_printf("Error\n");
-		return (0);
+	else
+	{
+		if (check_order(list_a) != 0)
+			moves = push_swap(&list_a, &list_b);
 	}
-	if (check_order(list_a) != 0)
-		moves = push_swap(&list_a, &list_b);
 	lst_free(list_a);
 	lst_free(list_b);
 	return (0);
