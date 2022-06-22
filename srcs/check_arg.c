@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/16 19:21:38 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/22 18:30:23 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ t_pile	*check_dup(t_pile *list)
 
 t_pile	*check_num(char **pt, int j)
 {
-	int		pnum;
 	int		a;
 	t_pile	*list;
 
@@ -59,19 +58,18 @@ t_pile	*check_num(char **pt, int j)
 	while (pt[j])
 	{
 		a = 0;
+		if (pt[j][a] == '-' || pt[j][a] == '+')
+				a++;
 		while (pt[j][a])
 		{
-			if (pt[j][a] == '-' || pt[j][a] == '+')
-				a++;
-			else if (ft_isdigit(pt[j][a] - 48) == 1)
+			if (ft_isdigit(pt[j][a] - 48) == 1 || \
+					pt[j][a] == '-' || pt[j][a] == '+')
 				return (null_list(list));
 			a++;
 		}
-		if ((ft_strlen(pt[j]) >= 10 && ft_atoi(pt[j]) == -1 && pt[j][0] != 0) \
-			|| (ft_strlen(pt[j]) > 11))
+		if (ft_strlen(pt[j]) >= 10 && ft_atoi(pt[j]) == -1 && pt[j][0] != 0)
 			return (null_list(list));
-		pnum = ft_atoi(pt[j]);
-		lst_add_back(&list, lst_new(pnum));
+		lst_add_back(&list, lst_new(ft_atoi(pt[j])));
 		j++;
 	}
 	list = check_dup(list);
