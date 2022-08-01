@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:39:05 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/16 19:22:02 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/08/01 16:11:57 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,6 @@ int	push_swap(t_pile **listA, t_pile **listB)
 	return (moves);
 }
 
-void	leaks(void)
-{
-	system("leaks push_swap");
-}
-
 int	main(int argc, char *argv[])
 {
 	t_pile	*list_a;
@@ -61,7 +56,7 @@ int	main(int argc, char *argv[])
 	moves = 0;
 	list_a = check_arg(argc, argv);
 	if (!list_a)
-		ft_printf("Error\n");
+		write(2, "Error\n", 6);
 	else
 	{
 		if (check_order(list_a) != 0)

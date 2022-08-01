@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/09 18:27:39 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/22 18:30:23 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:38:35 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ t_pile	*check_num(char **pt, int j)
 				a++;
 		while (pt[j][a])
 		{
-			if (ft_isdigit(pt[j][a] - 48) == 1 || \
+			if (ft_isdigit(pt[j][a]) != 1 || \
 					pt[j][a] == '-' || pt[j][a] == '+')
 				return (null_list(list));
 			a++;
 		}
-		if (ft_strlen(pt[j]) >= 10 && ft_atoi(pt[j]) == -1 && pt[j][0] != 0)
+		if (ft_atoi(pt[j]) == -1 && check_long(pt, j) > 1)
 			return (null_list(list));
 		lst_add_back(&list, lst_new(ft_atoi(pt[j])));
 		j++;
@@ -81,26 +81,19 @@ t_pile	*splice_args(int count, char **args)
 	char	**ptr;
 	t_pile	*pnum;
 	int		i;
-	int		j;
 
 	i = 0;
-	j = 1;
 	if (count < 3)
 	{
 		ptr = ft_split(args[1], ' ');
-		j = 0;
-		pnum = check_num(ptr, j);
-		while (ptr[i])
-		{
-			free(ptr[i]);
-			i++;
-		}
-		free(ptr);
+		pnum = check_num(ptr, 0);
+		free_ptr(ptr);
 	}
 	else
 	{
-		ptr = args;
-		pnum = check_num(ptr, j);
+		ptr = splice(args, 1);
+		pnum = check_num(ptr, 0);
+		free_ptr(ptr);
 	}
 	return (pnum);
 }

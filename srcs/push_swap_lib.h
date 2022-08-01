@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 17:45:17 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/07 19:41:59 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:52:53 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	lst_add_back(t_pile **head, t_pile *new);
 void	lst_swap(t_pile *list);
 void	lst_print(t_pile *listA, t_pile *listB);
 void	lst_free(t_pile *list);
+void	free_ptr(char **ptr);
 int		move_select(t_pile **listA, t_pile **listB, char *move, int moves);
 int		move_select_bis(t_pile **listA, t_pile **listB, char *move, int moves);
 int		lst_length(t_pile *list);
@@ -55,5 +56,8 @@ int		push_abc(t_pile **la, t_pile **lb, int *mov_ord, int check);
 int		push_order(t_pile **la, t_pile **lb, int moves);
 int		push_order_big(t_pile **la, t_pile **lb, int moves);
 int		push_chunks(t_pile **la, t_pile **lb, int moves, int key);
+int		check_long(char **pt, int idx);
+int		splice_bis(char **ptr, char **args, int i, int a);
+char	**splice(char **ptr, int i);
 
 #endif

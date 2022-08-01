@@ -6,7 +6,7 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/05 18:54:31 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/16 17:56:45 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/08/01 15:46:54 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,17 @@ int	*aproximity(t_pile *list)
 	res[0] = j;
 	res[1] = idx;
 	return (res);
+}
+
+void	free_ptr(char **ptr)
+{
+	int	i;
+
+	i = 0;
+	while (ptr[i])
+	{
+		free(ptr[i]);
+		i++;
+	}
+	free(ptr);
 }

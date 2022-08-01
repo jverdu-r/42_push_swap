@@ -6,7 +6,7 @@
 #    By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/30 19:03:06 by jverdu-r          #+#    #+#              #
-#    Updated: 2022/06/06 19:18:41 by jverdu-r         ###   ########.fr        #
+#    Updated: 2022/06/20 16:45:35 by jverdu-r         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,8 +31,7 @@ CC		= gcc
 
 RM		= rm -f
 
-CFLAGS  = -Wall -Werror -Wextra -glldb
-
+CFLAGS  = -Wall -Werror -Wextra -g
 
 .c.o:
 		${CC} ${CFLAGS} -c $< -o $@ 
