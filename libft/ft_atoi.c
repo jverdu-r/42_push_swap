@@ -6,21 +6,13 @@
 /*   By: jverdu-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 20:23:03 by jverdu-r          #+#    #+#             */
-/*   Updated: 2022/06/16 19:21:35 by jverdu-r         ###   ########.fr       */
+/*   Updated: 2022/06/27 16:52:45 by jverdu-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-int	overload(int val)
-{
-	if (val == -1)
-		return (0);
-	else
-		return (-1);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -41,12 +33,10 @@ int	ft_atoi(const char *str)
 	while (str[i] > 47 && str[i] < 58)
 	{
 		res = res * 10 + str[i] - '0';
-		if (res > 9223372036854775807)
-			return (overload(neg));
+		if ((res >= 2147483649 && neg == -1) || (res >= 2147483648 && neg == 1))
+			return (-1);
 		i++;
 	}
-	if ((res >= 2147483649 && neg == -1) || (res >= 2147483648 && neg == 1))
-		return (-1);
 	res = res * neg;
 	return ((int)res);
 }
